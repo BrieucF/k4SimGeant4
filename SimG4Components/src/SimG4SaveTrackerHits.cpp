@@ -106,9 +106,10 @@ StatusCode SimG4SaveTrackerHits::saveOutput(const G4Event& aEvent) {
           auto edmHit = edmHits->create();
           edmHit.setCellID(hit->cellID);
           edmHit.setEDep(hit->energyDeposit * sim::g42edm::energy);
-          /// workaround, store trackid in an unrelated field
+          /// workaround, store parentID in an unrelated field
           edmHit.setQuality(hit->trackId);
-          edmHit.setTime(hit->time);
+          /// workaround, store pdgID in an unrelated field
+          edmHit.setTime(hit->pdgId);
           edmHit.setPosition({
                               hit->prePos.x() * sim::g42edm::length,
                               hit->prePos.y() * sim::g42edm::length,
